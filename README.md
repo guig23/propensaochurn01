@@ -40,15 +40,15 @@ Outro ponto que podemos analisar é a sazonalidade, ou seja, será que existem m
 
 ## 💡 Primeiras Conclusões
 
-Aqui, encerramos a fase 1 do projeto, portanto, já temos algumas colunas que podem ser exploradas com maior afinco e peso dentro de nosso algoritmo de Machine Learning[cite: 1]. A atenção especial até aqui fica para a coluna 'Page Values' e sua relação com a coluna 'Revenue (receita)' — informação que iremos realmente comprovar por meio das métricas de avaliação de nosso modelo[cite: 1]. Outra observação é o real desbalanceamento neste título de problema de negócio, tendo apenas 15,5% do dataset com confirmação de compra[cite: 1]. Isso é característica dos problemas de propensão[cite: 1].
+Aqui, encerramos a fase 1 do projeto, portanto, já temos algumas colunas que podem ser exploradas com maior afinco e peso dentro de nosso algoritmo de Machine Learning. A atenção especial até aqui fica para a coluna 'Page Values' e sua relação com a coluna 'Revenue (receita)' — informação que iremos realmente comprovar por meio das métricas de avaliação de nosso modelo. Outra observação é o real desbalanceamento neste título de problema de negócio, tendo apenas 15,5% do dataset com confirmação de compra. Isso é característica dos problemas de propensão.
 
 ---
 
 ## ⚡ O Modelo Escolhido — XGBoost
 
-Até aqui já sabemos que os estudos de Propensão são classificados como problemas de Classificação dentro dos algoritmos de Machine Learning[cite: 1]. Dependendo do tamanho do dataset e de suas particularidades, convém-se escolher modelos mais robustos e refinados, para encontrarmos um bom precision e recall nos dados de teste[cite: 1]. 
+Até aqui já sabemos que os estudos de Propensão são classificados como problemas de Classificação dentro dos algoritmos de Machine Learning. Dependendo do tamanho do dataset e de suas particularidades, convém-se escolher modelos mais robustos e refinados, para encontrarmos um bom precision e recall nos dados de teste. 
 
-O K-Neighbors é um modelo básico de classificação mas, até mesmo por se tratar de um projeto que busca usar ferramentas semelhantes àquelas usadas no dia a dia de um Cientista de Dados, é que fez o **XGBoost** ser escolhido[cite: 1]. Esse é um modelo muito mais refinado e usa as 'Decision Trees — Árvores de Decisão' para melhorar os resultados e métricas do modelo[cite: 1]. A matemática é mais refinada do que a matemática do K-Neighbors e usa conceitos como Derivadas de n ordens para diminuir o erro e melhorar a assertividade do modelo[cite: 1].
+O K-Neighbors é um modelo básico de classificação mas, até mesmo por se tratar de um projeto que busca usar ferramentas semelhantes àquelas usadas no dia a dia de um Cientista de Dados, é que fez o **XGBoost** ser escolhido. Esse é um modelo muito mais refinado e usa as 'Decision Trees — Árvores de Decisão' para melhorar os resultados e métricas do modelo. A matemática é mais refinada do que a matemática do K-Neighbors e usa conceitos como Derivadas de n ordens para diminuir o erro e melhorar a assertividade do modelo.
 
 ---
 

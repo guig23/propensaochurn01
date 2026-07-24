@@ -68,7 +68,85 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 
 print(f'Quantidade de Linhas para TREINO, o X_train: {X_train.shape[0]}')
 print(f'Quantidade de Linhas para o TESTE, o X_test: {X_test.shape[0]}')
+---
 
+```
+# Fase 3: XGBoost entra em ação
+```python
+modelo_xgb = XGBClassifier(random_state=42, eval_metric='logloss')
+modelo_xgb.fit(X_train, y_train)
 
+print("\n ---Modelo treinado!---")
+```
+Feito o treinamento, importamos as bibliotecas abaixo para analisar a performance do modelo[cite: 1]:
+```python
+from xgboost import XGBClassifier
+from sklearn.metrics import classification_report, accuracy_score
+
+y_pred = modelo_xgb.predict(X_test)
+
+# Análise das acurácias:
+print(f"A acurácia do modelo foi de: {accuracy_score(y_test, y_pred):.2%}")
+```
+Resultado:
+
+```python
+---Modelo treinado!---
+A acurácia do modelo foi de: 94.88%
+```
+Análise Detalhada de Métricas & Refinamento
+Aqui que reside o ponto de maior atenção[cite: 1]. A acurácia pode enganar muito a análise e dar a entender que o modelo é excelente e consegue acertar 9 a cada 10 compras[cite: 1]. No entanto, usando outras métricas, descobrimos que[cite: 1]:
+Classe,Precision,Recall
+0 (Não comprou)  0.96,0.99
+1 (Comprou)      0.54,0.26
+
+Considere a linha com número 1 como as compras aprovadas e o número 0 como as compras não finalizadas[cite: 1]. Nosso recall foi de 26%, número que já imaginávamos que seria baixo devido ao dataset já desbalanceado[cite: 1]. Lembrando que a métrica 'recall' foca seu resultado dentro das pessoas que realmente compraram (True)[cite: 1]. Assim, das pessoas que realmente compraram, o modelo conseguiu prever apenas 26% delas[cite: 1].
+
+Já o 'precision' foi de 54%, ou seja, a cada 100 pessoas que o modelo disse que fechariam a compra, apenas 54% de fato compraram e 46 não, ou seja, 46 consideramos como 'falso-positivo'[cite: 1].
+
+Por se tratar de um modelo mais refinado que o K-Neighbors, por exemplo, buscamos encontrar alguma ferramenta inerente do modelo que melhorasse essa análise[cite: 1]. Assim, entra em ação o uso do scale_pos_weight, ou seja, ele busca dar peso maior para os 'Sim' da base de dados[cite: 1]. O valor que usamos para este foi 17, pois existem 17 vezes mais pessoas que não compraram comparado às que, de fato, compraram[cite: 1]. Logo, o modelo dará um peso 17 vezes maior para os erros da classe positiva[cite: 1].
+
+```Python
+modelo_xgb = XGBClassifier(random_state=42, eval_metric='logloss', scale_pos_weight=17)
+modelo_xgb.fit(X_train, y_train)
+```
+Fazendo isso, obtemos que[cite: 1]:
+
+A acurácia do modelo foi de: 93.20%
+
+Relatório detalhado do rendimento do Modelo:
+Classe,Precision,Recall,F1-Score,Support
+0,0.96,0.97,0.96,1867
+1,0.35,0.33,0.34,105
+O recall sobe de 26% para 33% e a precision paga um preço maior saindo de 54% para 35%[cite: 1]. E isso é um problema? Vai depender de qual é o objetivo do time de marketing da empresa[cite: 1].
+
+Feature Importance (Variáveis mais Impactantes)
+Antes das conclusões finais, usamos outra métrica para entender quais as colunas que mais impactaram as decisões do modelo[cite: 1].
+
+Com o scale_pos_weight=17:
+Posição,Variável,Importância
+21,Month_Nov,0.204150
+19,Month_Mar,0.173412
+20,Month_May,0.139393
+8,PageValues,0.102618
+15,Month_Dec,0.036547
+
+A coluna de novembro (mês da Black Friday) teve 20% de importância, seguida de Março (17%) e Maio (14%)[cite: 1]. PageValues atinge 10%[cite: 1].
+
+Mas, se retirarmos o peso de 17x que usamos para refinar o modelo, a classificação fica a seguir[cite: 1]:
+
+Posição,Variável,Importância
+8,PageValues,0.227078
+21,Month_Nov,0.155039
+19,Month_Mar,0.076282
+20,Month_May,0.064562
+25,VisitorType_Returning_Visitor,0.050324
+
+22% para a coluna PageValues, ou seja, sim, ela possui importância significativa na análise geral[cite: 1].
+
+🏆 Conclusões Finais & Impacto de Negócio
+A Sazonalidade Manda nas Vendas: O mês de Novembro apresenta um volume desproporcional de acessos e conversões em relação aos outros meses do ano, impulsionado por eventos como a Black Friday[cite: 1]. Março e Maio também demonstraram picos relevantes de tráfego[cite: 1].
+
+Estratégia de Marketing: Com um recall de 33%, é possível identificar uma fatia muito maior de compradores reais[cite: 1]. Isso também significa que as ações recomendadas são disparos de e-mails automáticos, notificações Push e retargeting de anúncios, que têm custo individual insignificante para as companhias do que um precision maior que fará com que a empresa lance cupons de desconto, por exemplo, para aqueles que já iriam comprar independente de cupom de desconto ou não[cite: 1].
 
 

@@ -68,3 +68,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 
 print(f'Quantidade de Linhas para TREINO, o X_train: {X_train.shape[0]}')
 print(f'Quantidade de Linhas para o TESTE, o X_test: {X_test.shape[0]}')
+
+
+
+

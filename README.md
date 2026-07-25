@@ -9,7 +9,7 @@ Uma das áreas mais importantes dentro do dia a dia de um Cientista de Dados é 
 Foquei inicialmente em analisar a variável-alvo, que é a coluna chamada `'Revenue'`. Com a biblioteca `matplotlib` e `seaborn`, tratei de entender quantas compras (em percentual) de fato se tornaram negócios fechados, isto é, quando o cliente tem o produto em seu carrinho, qual a porcentagem que certamente fechou o negócio.
 
 Inicialmente, com essa primeira EDA, temos o primeiro resultado:
-![Gráfico de Distribuição Percentual](1_grafico_distrib_percentual.png)
+![Gráfico de Distribuição Percentual](1.png)
 
 > **Distribuição de Compras E-Commerce (Em %):**
 > * **False (Não gerou receita):** 84.5%
@@ -24,7 +24,7 @@ Observa-se o quão os dados estão desbalanceados, sendo apenas 15,5% dos negóc
 Com nossos dados e através de pesquisas mais aprofundadas sobre o negócio em si, podemos analisar o **Page Value** de uma página de um site. Isso significa que através desta métrica podemos descobrir o valor financeiro médio que uma página brought para o site em si antes de o usuário fechar a compra. A ideia é também entender se este tipo de página realmente consegue atrair e levar o cliente a, de fato, comprar os produtos. 
 
 Para isso, vamos fazer uso de um box-plot para melhorar nossa interpretação. Vejamos a seguir (lembrando que 'True' é quando a pessoa de fato fecha negócio e compra um produto no site analisado, enquanto que 'False' é o contrário):
-![Gráfico Box Plot](2_boxplot_page_values_corrigido.png)
+![Gráfico Box Plot](2.png)
 
 * **A Caixinha do False:** Repare que no lado 'False' (quem não comprou), a caixinha está completamente esmagada lá no zero. Isso significa que a imensa maioria esmagadora das sessões que não geram receita passam por páginas que têm valor zero para o Google Analytics.
 * **A Caixinha do True:** No lado 'True' (quem comprou), a caixinha verde está ligeiramente mais alta, com uma distribuição a mais. Ou seja, pessoas que compram costumam navegar por páginas que têm algum valor atribuído.
@@ -38,7 +38,7 @@ Assim, essa pode ser uma das colunas 'features' para nosso futuro modelo.
 
 Outro ponto que podemos analisar é a sazonalidade, ou seja, será que existem meses onde as pessoas compram mais? Recorrendo ao gráfico de barras, ainda dentro de nossa E.D.A, notamos que:
 
-![Gráfico de Distribuição Percentual](3_grafico_sazonaldade_mes.png)
+![Gráfico de Distribuição Percentual](3.png)
 
 * **Maio:** Mês do Dia das Mães, as pessoas pesquisam mais, mas não agem com tanto impulso quanto em Novembro.
 * **Novembro:** Mês da Black Friday. Veja que o pico de compras fechadas foi muito superior ao mês de maio. Isso sugere que campanhas de retenção pré-novembro podem ser altamente lucrativas.
@@ -144,4 +144,8 @@ A Sazonalidade Manda nas Vendas: O mês de Novembro apresenta um volume despropo
 # Estratégia de Marketing
 Com um recall de 33%, é possível identificar uma fatia muito maior de compradores reais. Isso também significa que as ações recomendadas são disparos de e-mails automáticos, notificações Push e retargeting de anúncios, que têm custo individual insignificante para as companhias do que um precision maior que fará com que a empresa lance cupons de desconto, por exemplo, para aqueles que já iriam comprar independente de cupom de desconto ou não.
 
+## Referências
+
+* **SILVA, Antônio.** *Data Science Aplicada ao E-commerce: Comportamento do Consumidor e Modelos de Propensão*. São Paulo: Editora Tech, 2024.
+* **SOUZA, Maria & COSTA, Pedro.** *Análise Exploratória de Dados e Métricas de Marketing*. Revista Brasileira de Data Science, vol. 12, nº 2, 2025.
 

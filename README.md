@@ -60,7 +60,7 @@ O K-Neighbors é um modelo básico de classificação mas, até mesmo por se tra
 
 ---
 
-## Modelagem Preditiva & Dados
+## Modelagem Preditiva e Dados
 
 O objetivo deste resumo não é explorar e detalhar toda a parte de programação, mas sim detalhar o plano de investigação e uso do algoritmo XGBoost.
 
@@ -102,7 +102,7 @@ Resultado:
 ---Modelo treinado!---
 A acurácia do modelo foi de: 94.88%
 ```
-Análise Detalhada de Métricas & Refinamento
+Análise Detalhada de Métricas e Refinamento
 Aqui que reside o ponto de maior atenção. A acurácia pode enganar muito a análise e dar a entender que o modelo é excelente e consegue acertar 9 a cada 10 compras. No entanto, usando outras métricas, descobrimos que:
 
 ![Precision e recall ](5.png)
@@ -138,9 +138,10 @@ Mas, se retirarmos o peso de 17x que usamos para refinar o modelo, a classifica�
 
 22% para a coluna PageValues, ou seja, sim, ela possui importância significativa na análise geral.
 
-# Conclusões Finais & Impacto de Negócio
+# Conclusões Finais e Impacto de Negócio
 A Sazonalidade Manda nas Vendas: O mês de Novembro apresenta um volume desproporcional de acessos e conversões em relação aos outros meses do ano, impulsionado por eventos como a Black Friday. Março e Maio também demonstraram picos relevantes de tráfego.
 
-# Estratégia de Marketing: Com um recall de 33%, é possível identificar uma fatia muito maior de compradores reais. Isso também significa que as ações recomendadas são disparos de e-mails automáticos, notificações Push e retargeting de anúncios, que têm custo individual insignificante para as companhias do que um precision maior que fará com que a empresa lance cupons de desconto, por exemplo, para aqueles que já iriam comprar independente de cupom de desconto ou não.
+# Estratégia de Marketing
+Com um recall de 33%, é possível identificar uma fatia muito maior de compradores reais. Isso também significa que as ações recomendadas são disparos de e-mails automáticos, notificações Push e retargeting de anúncios, que têm custo individual insignificante para as companhias do que um precision maior que fará com que a empresa lance cupons de desconto, por exemplo, para aqueles que já iriam comprar independente de cupom de desconto ou não.
 
 

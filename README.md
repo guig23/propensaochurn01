@@ -115,37 +115,22 @@ Por se tratar de um modelo mais refinado que o K-Neighbors, por exemplo, buscamo
 modelo_xgb = XGBClassifier(random_state=42, eval_metric='logloss', scale_pos_weight=17)
 modelo_xgb.fit(X_train, y_train)
 ```
-Fazendo isso, obtemos que[cite: 1]:
+Fazendo isso, obtemos que:
 
-A acurácia do modelo foi de: 93.20%
-
-Relatório detalhado do rendimento do Modelo:
-Classe,Precision,Recall,F1-Score,Support
-0,0.96,0.97,0.96,1867
-1,0.35,0.33,0.34,105
-O recall sobe de 26% para 33% e a precision paga um preço maior saindo de 54% para 35%[cite: 1]. E isso é um problema? Vai depender de qual é o objetivo do time de marketing da empresa[cite: 1].
+![novo precision e recall](6.png)
+O recall sobe de 26% para 33% e a precision paga um preço maior saindo de 54% para 35%. E isso é um problema? Vai depender de qual é o objetivo do time de marketing da empresa.
 
 Feature Importance (Variáveis mais Impactantes)
-Antes das conclusões finais, usamos outra métrica para entender quais as colunas que mais impactaram as decisões do modelo[cite: 1].
+Antes das conclusões finais, usamos outra métrica para entender quais as colunas que mais impactaram as decisões do modelo.
 
 Com o scale_pos_weight=17:
-Posição,Variável,Importância
-21,Month_Nov,0.204150
-19,Month_Mar,0.173412
-20,Month_May,0.139393
-8,PageValues,0.102618
-15,Month_Dec,0.036547
+![Percentual das colunas](7.png)
 
-A coluna de novembro (mês da Black Friday) teve 20% de importância, seguida de Março (17%) e Maio (14%)[cite: 1]. PageValues atinge 10%[cite: 1].
+A coluna de novembro (mês da Black Friday) teve 20% de importância, seguida de Março (17%) e Maio (14%). PageValues atinge 10%.
 
-Mas, se retirarmos o peso de 17x que usamos para refinar o modelo, a classificação fica a seguir[cite: 1]:
+Mas, se retirarmos o peso de 17x que usamos para refinar o modelo, a classificação fica a seguir:
 
-Posição,Variável,Importância
-8,PageValues,0.227078
-21,Month_Nov,0.155039
-19,Month_Mar,0.076282
-20,Month_May,0.064562
-25,VisitorType_Returning_Visitor,0.050324
+![colunas mais importantes](8.png)
 
 22% para a coluna PageValues, ou seja, sim, ela possui importância significativa na análise geral[cite: 1].
 

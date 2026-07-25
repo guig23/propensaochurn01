@@ -102,10 +102,8 @@ Resultado:
 A acurácia do modelo foi de: 94.88%
 ```
 Análise Detalhada de Métricas & Refinamento
-Aqui que reside o ponto de maior atenção[cite: 1]. A acurácia pode enganar muito a análise e dar a entender que o modelo é excelente e consegue acertar 9 a cada 10 compras[cite: 1]. No entanto, usando outras métricas, descobrimos que[cite: 1]:
-Classe,Precision,Recall
-0 (Não comprou)  0.96,0.99
-1 (Comprou)      0.54,0.26
+Aqui que reside o ponto de maior atenção. A acurácia pode enganar muito a análise e dar a entender que o modelo é excelente e consegue acertar 9 a cada 10 compras[cite: 1]. No entanto, usando outras métricas, descobrimos que:
+![Precision e recall ](5.png)
 
 Considere a linha com número 1 como as compras aprovadas e o número 0 como as compras não finalizadas[cite: 1]. Nosso recall foi de 26%, número que já imaginávamos que seria baixo devido ao dataset já desbalanceado[cite: 1]. Lembrando que a métrica 'recall' foca seu resultado dentro das pessoas que realmente compraram (True)[cite: 1]. Assim, das pessoas que realmente compraram, o modelo conseguiu prever apenas 26% delas[cite: 1].
 

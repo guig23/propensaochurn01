@@ -37,6 +37,7 @@ Assim, essa pode ser uma das colunas 'features' para nosso futuro modelo.
 ### A Sazonalidade
 
 Outro ponto que podemos analisar é a sazonalidade, ou seja, será que existem meses onde as pessoas compram mais? Recorrendo ao gráfico de barras, ainda dentro de nossa E.D.A, notamos que:
+
 ![Gráfico de Distribuição Percentual](3_grafico_sazonaldade_mes.png)
 
 * **Maio:** Mês do Dia das Mães, as pessoas pesquisam mais, mas não agem com tanto impulso quanto em Novembro.
@@ -61,10 +62,10 @@ O K-Neighbors é um modelo básico de classificação mas, até mesmo por se tra
 
 ## Modelagem Preditiva & Dados
 
-O objetivo deste resumo não é explorar e detalhar toda a parte de programação, mas sim detalhar o plano de investigação e uso do algoritmo XGBoost[cite: 1].
+O objetivo deste resumo não é explorar e detalhar toda a parte de programação, mas sim detalhar o plano de investigação e uso do algoritmo XGBoost.
 
 ### Decisão da proporção 80-20 no modelo
-Por se tratar de um conjunto de dados com pouco mais de 12 mil linhas, usa-se o padrão de 80% dos dados para treino e 20% separados para teste, usando o conceito de **Stratify** (estratificação), para que a proporção na divisão dos dados se mantenha, ou seja, dentro dos 80% das linhas de treino se mantenham a mesma proporção de 'True' e 'False' que nos dados de Teste (os demais 20%)[cite: 1].
+Por se tratar de um conjunto de dados com pouco mais de 12 mil linhas, usa-se o padrão de 80% dos dados para treino e 20% separados para teste, usando o conceito de **Stratify** (estratificação), para que a proporção na divisão dos dados se mantenha, ou seja, dentro dos 80% das linhas de treino se mantenham a mesma proporção de 'True' e 'False' que nos dados de Teste (os demais 20%).
 
 ```python
 # Iniciando a separacao em um dataframe e uma série (X e y), separando as features da coluna Target.
@@ -85,7 +86,7 @@ modelo_xgb.fit(X_train, y_train)
 
 print("\n ---Modelo treinado!---")
 ```
-Feito o treinamento, importamos as bibliotecas abaixo para analisar a performance do modelo[cite: 1]:
+Feito o treinamento, importamos as bibliotecas abaixo para analisar a performance do modelo:
 ```python
 from xgboost import XGBClassifier
 from sklearn.metrics import classification_report, accuracy_score
@@ -102,14 +103,15 @@ Resultado:
 A acurácia do modelo foi de: 94.88%
 ```
 Análise Detalhada de Métricas & Refinamento
-Aqui que reside o ponto de maior atenção. A acurácia pode enganar muito a análise e dar a entender que o modelo é excelente e consegue acertar 9 a cada 10 compras[cite: 1]. No entanto, usando outras métricas, descobrimos que:
+Aqui que reside o ponto de maior atenção. A acurácia pode enganar muito a análise e dar a entender que o modelo é excelente e consegue acertar 9 a cada 10 compras. No entanto, usando outras métricas, descobrimos que:
+
 ![Precision e recall ](5.png)
 
-Considere a linha com número 1 como as compras aprovadas e o número 0 como as compras não finalizadas[cite: 1]. Nosso recall foi de 26%, número que já imaginávamos que seria baixo devido ao dataset já desbalanceado[cite: 1]. Lembrando que a métrica 'recall' foca seu resultado dentro das pessoas que realmente compraram (True)[cite: 1]. Assim, das pessoas que realmente compraram, o modelo conseguiu prever apenas 26% delas[cite: 1].
+Considere a linha com número 1 como as compras aprovadas e o número 0 como as compras não finalizadas. Nosso recall foi de 26%, número que já imaginávamos que seria baixo devido ao dataset já desbalanceado. Lembrando que a métrica 'recall' foca seu resultado dentro das pessoas que realmente compraram (True). Assim, das pessoas que realmente compraram, o modelo conseguiu prever apenas 26% delas.
 
-Já o 'precision' foi de 54%, ou seja, a cada 100 pessoas que o modelo disse que fechariam a compra, apenas 54% de fato compraram e 46 não, ou seja, 46 consideramos como 'falso-positivo'[cite: 1].
+Já o 'precision' foi de 54%, ou seja, a cada 100 pessoas que o modelo disse que fechariam a compra, apenas 54% de fato compraram e 46 não, ou seja, 46 consideramos como 'falso-positivo'.
 
-Por se tratar de um modelo mais refinado que o K-Neighbors, por exemplo, buscamos encontrar alguma ferramenta inerente do modelo que melhorasse essa análise[cite: 1]. Assim, entra em ação o uso do scale_pos_weight, ou seja, ele busca dar peso maior para os 'Sim' da base de dados[cite: 1]. O valor que usamos para este foi 17, pois existem 17 vezes mais pessoas que não compraram comparado às que, de fato, compraram[cite: 1]. Logo, o modelo dará um peso 17 vezes maior para os erros da classe positiva[cite: 1].
+Por se tratar de um modelo mais refinado que o K-Neighbors, por exemplo, buscamos encontrar alguma ferramenta inerente do modelo que melhorasse essa análise. Assim, entra em ação o uso do scale_pos_weight, ou seja, ele busca dar peso maior para os 'Sim' da base de dados. O valor que usamos para este foi 17, pois existem 17 vezes mais pessoas que não compraram comparado às que, de fato, compraram. Logo, o modelo dará um peso 17 vezes maior para os erros da classe positiva.
 
 ```Python
 modelo_xgb = XGBClassifier(random_state=42, eval_metric='logloss', scale_pos_weight=17)
@@ -118,12 +120,14 @@ modelo_xgb.fit(X_train, y_train)
 Fazendo isso, obtemos que:
 
 ![novo precision e recall](6.png)
+
 O recall sobe de 26% para 33% e a precision paga um preço maior saindo de 54% para 35%. E isso é um problema? Vai depender de qual é o objetivo do time de marketing da empresa.
 
 Feature Importance (Variáveis mais Impactantes)
 Antes das conclusões finais, usamos outra métrica para entender quais as colunas que mais impactaram as decisões do modelo.
 
 Com o scale_pos_weight=17:
+
 ![Percentual das colunas](7.png)
 
 A coluna de novembro (mês da Black Friday) teve 20% de importância, seguida de Março (17%) e Maio (14%). PageValues atinge 10%.
@@ -132,11 +136,11 @@ Mas, se retirarmos o peso de 17x que usamos para refinar o modelo, a classifica�
 
 ![colunas mais importantes](8.png)
 
-22% para a coluna PageValues, ou seja, sim, ela possui importância significativa na análise geral[cite: 1].
+22% para a coluna PageValues, ou seja, sim, ela possui importância significativa na análise geral.
 
 🏆 Conclusões Finais & Impacto de Negócio
-A Sazonalidade Manda nas Vendas: O mês de Novembro apresenta um volume desproporcional de acessos e conversões em relação aos outros meses do ano, impulsionado por eventos como a Black Friday[cite: 1]. Março e Maio também demonstraram picos relevantes de tráfego[cite: 1].
+A Sazonalidade Manda nas Vendas: O mês de Novembro apresenta um volume desproporcional de acessos e conversões em relação aos outros meses do ano, impulsionado por eventos como a Black Friday. Março e Maio também demonstraram picos relevantes de tráfego.
 
-Estratégia de Marketing: Com um recall de 33%, é possível identificar uma fatia muito maior de compradores reais[cite: 1]. Isso também significa que as ações recomendadas são disparos de e-mails automáticos, notificações Push e retargeting de anúncios, que têm custo individual insignificante para as companhias do que um precision maior que fará com que a empresa lance cupons de desconto, por exemplo, para aqueles que já iriam comprar independente de cupom de desconto ou não[cite: 1].
+Estratégia de Marketing: Com um recall de 33%, é possível identificar uma fatia muito maior de compradores reais. Isso também significa que as ações recomendadas são disparos de e-mails automáticos, notificações Push e retargeting de anúncios, que têm custo individual insignificante para as companhias do que um precision maior que fará com que a empresa lance cupons de desconto, por exemplo, para aqueles que já iriam comprar independente de cupom de desconto ou não.
 
 

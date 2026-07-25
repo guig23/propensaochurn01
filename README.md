@@ -24,7 +24,7 @@ Observa-se o quão os dados estão desbalanceados, sendo apenas 15,5% dos negóc
 Com nossos dados e através de pesquisas mais aprofundadas sobre o negócio em si, podemos analisar o **Page Value** de uma página de um site. Isso significa que através desta métrica podemos descobrir o valor financeiro médio que uma página brought para o site em si antes de o usuário fechar a compra. A ideia é também entender se este tipo de página realmente consegue atrair e levar o cliente a, de fato, comprar os produtos. 
 
 Para isso, vamos fazer uso de um box-plot para melhorar nossa interpretação. Vejamos a seguir (lembrando que 'True' é quando a pessoa de fato fecha negócio e compra um produto no site analisado, enquanto que 'False' é o contrário):
-![Gráfico de Distribuição Percentual](2_boxplot_page_value_corrigido.png)
+![Gráfico Box Plot](2_boxplot_page_values_corrigido.png)
 
 * **A Caixinha do False:** Repare que no lado 'False' (quem não comprou), a caixinha está completamente esmagada lá no zero. Isso significa que a imensa maioria esmagadora das sessões que não geram receita passam por páginas que têm valor zero para o Google Analytics.
 * **A Caixinha do True:** No lado 'True' (quem comprou), a caixinha verde está ligeiramente mais alta, com uma distribuição a mais. Ou seja, pessoas que compram costumam navegar por páginas que têm algum valor atribuído.

@@ -2,7 +2,7 @@
 
 ## Introdução
 
-Uma das áreas mais importantes dentro do dia a dia de um Cientista de Dados é o estudo de Propensão de Compras, isto é, entender de fato a probabilidade dos consumidores em fechar negócio, ou seja, comprar o produto que está no carrinho de compras. O estudo abaixo busca analisar os dados de compra disponibilizado no Kaggle, utilizando o uso do modelo de Machine Learning de Classificação chamado XGBoost. Bem mais robusto que o K-Neighbors, por exemplo, o modelo é ideal para este tipo de problema de negócio, que trabalha com dados desbalanceados. Vejamos os resultados a seguir de forma detalhada.
+Uma das áreas mais importantes dentro do dia a dia de um Cientista de Dados é o estudo de Propensão de Compras, isto é, entender de fato a probabilidade dos consumidores em fechar negócio, ou seja, comprar o produto que está no carrinho de compras. O estudo abaixo busca analisar os dados de compra disponibilizado no Kaggle, recorrendo o uso do modelo de Machine Learning de Classificação chamado XGBoost. Bem mais robusto do que o K-Neighbors, por exemplo, o modelo é ideal para este tipo de problema de negócio, que trabalha com dados desbalanceados. Vejamos os resultados a seguir de forma detalhada.
 
 ## 1. A Primeira Análise
 
@@ -14,7 +14,7 @@ Inicialmente, com essa primeira EDA, temos o primeiro resultado:
 > * **False (Não gerou receita):** 84.5%
 > * **True (Gerou receita):** 15.5%
 
-Observa-se o quão os dados estão desbalanceados, sendo apenas 15,5% dos negócios fechados (True), contra 84,5% que não geraram receita, ou seja, False. Isso já é um indício que os futuros modelos de Machine Learning deverão ser extremamente bem treinados para conseguir encontrar esse percentual que é bem pequeno. Assim, o cuidado com overfitting é um dos pontos de atenção até aqui.
+Observa-se o quão os dados estão desbalanceados, sendo apenas 15,5% dos negócios fechados (True), contra 84,5% que não geraram receita, ou seja, False. Isso já é um indício que o futuro modelo de Machine Learning deverá ser extremamente bem treinado para conseguir encontrar esse percentual que é bem pequeno. Assim, o cuidado com overfitting não é levado tanto em consideração, pois o XGBoost (modelo escolhido) não é tão sensível quanto ao K-Neighboor.
 
 ---
 

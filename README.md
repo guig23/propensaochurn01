@@ -9,7 +9,7 @@ Uma das áreas mais importantes dentro do dia a dia de um Cientista de Dados é 
 Foquei inicialmente em analisar a variável-alvo, que é a coluna chamada `'Revenue'`. Com a biblioteca `matplotlib` e `seaborn`, tratei de entender quantas compras (em percentual) de fato se tornaram negócios fechados, isto é, quando o cliente tem o produto em seu carrinho, qual a porcentagem que certamente fechou o negócio.
 
 Inicialmente, com essa primeira EDA, temos o primeiro resultado:
-          (GRÁFICO AQUI)
+![Gráfico de Distribuição Percentual](1_grafico_distrib_percentual.png)
 
 > **Distribuição de Compras E-Commerce (Em %):**
 > * **False (Não gerou receita):** 84.5%

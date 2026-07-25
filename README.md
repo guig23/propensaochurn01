@@ -1,5 +1,10 @@
 # Análise de Propensão de Compra em E-Commerce (Churn/Revenue)
 
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+![Pandas](https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white)
+![Scikit-Learn](https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=for-the-badge&logo=scikit-learn&logoColor=white)
+![Status](https://img.shields.io/badge/Status-Conclu%C3%ADdo-brightgreen?style=for-the-badge)
+
 ## Introdução
 
 Uma das áreas mais importantes dentro do dia a dia de um Cientista de Dados é o estudo de Propensão de Compras, isto é, entender de fato a probabilidade dos consumidores em fechar negócio, ou seja, comprar o produto que está no carrinho de compras. O estudo abaixo busca analisar os dados de compra disponibilizado no Kaggle, recorrendo o uso do modelo de Machine Learning de Classificação chamado XGBoost. Bem mais robusto do que o K-Neighbors, por exemplo, o modelo é ideal para este tipo de problema de negócio, que trabalha com dados desbalanceados. Vejamos os resultados a seguir de forma detalhada.

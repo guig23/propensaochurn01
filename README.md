@@ -1,4 +1,4 @@
-# 🛒 Análise de Propensão de Compra em E-Commerce (Churn/Revenue)
+# Análise de Propensão de Compra em E-Commerce (Churn/Revenue)
 
 ## Introdução
 
@@ -9,6 +9,7 @@ Uma das áreas mais importantes dentro do dia a dia de um Cientista de Dados é 
 Foquei inicialmente em analisar a variável-alvo, que é a coluna chamada `'Revenue'`. Com a biblioteca `matplotlib` e `seaborn`, tratei de entender quantas compras (em percentual) de fato se tornaram negócios fechados, isto é, quando o cliente tem o produto em seu carrinho, qual a porcentagem que certamente fechou o negócio.
 
 Inicialmente, com essa primeira EDA, temos o primeiro resultado:
+          (GRÁFICO AQUI)
 
 > **Distribuição de Compras E-Commerce (Em %):**
 > * **False (Não gerou receita):** 84.5%
@@ -23,6 +24,7 @@ Observa-se o quão os dados estão desbalanceados, sendo apenas 15,5% dos negóc
 Com nossos dados e através de pesquisas mais aprofundadas sobre o negócio em si, podemos analisar o **Page Value** de uma página de um site. Isso significa que através desta métrica podemos descobrir o valor financeiro médio que uma página brought para o site em si antes de o usuário fechar a compra. A ideia é também entender se este tipo de página realmente consegue atrair e levar o cliente a, de fato, comprar os produtos. 
 
 Para isso, vamos fazer uso de um box-plot para melhorar nossa interpretação. Vejamos a seguir (lembrando que 'True' é quando a pessoa de fato fecha negócio e compra um produto no site analisado, enquanto que 'False' é o contrário):
+(GRÁFICO AQUI BOXPLOT)
 
 * **A Caixinha do False:** Repare que no lado 'False' (quem não comprou), a caixinha está completamente esmagada lá no zero. Isso significa que a imensa maioria esmagadora das sessões que não geram receita passam por páginas que têm valor zero para o Google Analytics.
 * **A Caixinha do True:** No lado 'True' (quem comprou), a caixinha verde está ligeiramente mais alta, com uma distribuição a mais. Ou seja, pessoas que compram costumam navegar por páginas que têm algum valor atribuído.
@@ -32,7 +34,7 @@ Assim, essa pode ser uma das colunas 'features' para nosso futuro modelo.
 
 ---
 
-### 🗓️ Sazonalidade
+### A Sazonalidade
 
 Outro ponto que podemos analisar é a sazonalidade, ou seja, será que existem meses onde as pessoas compram mais? Recorrendo ao gráfico de barras, ainda dentro de nossa E.D.A, notamos que:
 
@@ -42,13 +44,13 @@ Outro ponto que podemos analisar é a sazonalidade, ou seja, será que existem m
 
 ---
 
-## 💡 Primeiras Conclusões
+## As Primeiras Conclusões
 
 Aqui, encerramos a fase 1 do projeto, portanto, já temos algumas colunas que podem ser exploradas com maior afinco e peso dentro de nosso algoritmo de Machine Learning. A atenção especial até aqui fica para a coluna 'Page Values' e sua relação com a coluna 'Revenue (receita)' — informação que iremos realmente comprovar por meio das métricas de avaliação de nosso modelo. Outra observação é o real desbalanceamento neste título de problema de negócio, tendo apenas 15,5% do dataset com confirmação de compra. Isso é característica dos problemas de propensão.
 
 ---
 
-## ⚡ O Modelo Escolhido — XGBoost
+## O Modelo Escolhido — XGBoost
 
 Até aqui já sabemos que os estudos de Propensão são classificados como problemas de Classificação dentro dos algoritmos de Machine Learning. Dependendo do tamanho do dataset e de suas particularidades, convém-se escolher modelos mais robustos e refinados, para encontrarmos um bom precision e recall nos dados de teste. 
 
@@ -56,7 +58,7 @@ O K-Neighbors é um modelo básico de classificação mas, até mesmo por se tra
 
 ---
 
-## 🤖 Modelagem Preditiva & Dados
+## Modelagem Preditiva & Dados
 
 O objetivo deste resumo não é explorar e detalhar toda a parte de programação, mas sim detalhar o plano de investigação e uso do algoritmo XGBoost[cite: 1].
 
